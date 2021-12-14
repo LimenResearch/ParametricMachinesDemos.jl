@@ -1,0 +1,13 @@
+device,problemsize,machine,forward,backward
+CPU,small,dense,19800.0,18100.0
+GPU,small,dense,876100.0,961200.0
+CPU,medium,dense,254300.0,214800.0
+GPU,medium,dense,813400.0,876000.0
+CPU,small,convolution,110000.0,106700.0
+GPU,small,convolution,976600.0,1.0476e6
+CPU,medium,convolution,1.74411e7,1.69065e7
+GPU,medium,convolution,1.7017e6,1.9334e6
+CPU,small,recurrent,399300.0,378900.0
+GPU,small,recurrent,4.3265e6,4.567e6
+CPU,medium,recurrent,3.91618e7,3.8429e7
+GPU,medium,recurrent,6.3543e6,6.5157e6

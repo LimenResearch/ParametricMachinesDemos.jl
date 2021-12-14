@@ -1,0 +1,18 @@
+name = "ParametricMachines"
+uuid = "bf2452f4-e92a-4e69-8f07-19c02af9b8cb"
+authors = ["Pietro Vertechi <pietro.vertechi@veos.digital>", "Mattia G. Bergomi <mattia.bergomi@veos.digital>"]
+version = "0.1.0"
+
+[deps]
+ChainRules = "082447d4-558c-5d27-93f4-14fc19e9eca2"
+ChainRulesCore = "d360d2e6-b24c-11e9-a2a3-2a2ae2dbcce4"
+Functors = "d9f16b24-f501-4c13-a1f2-28368ffc5196"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+NNlib = "872c559c-99b0-510c-b3b7-b6c96a88d5cd"
+
+[compat]
+ChainRules = "1"
+ChainRulesCore = "1.4"
+Functors = "0.2"
+NNlib = "0.7"
+julia = "1"
