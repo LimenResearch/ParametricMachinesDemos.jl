@@ -1,0 +1,6 @@
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+ParametricMachines = "bf2452f4-e92a-4e69-8f07-19c02af9b8cb"
+
+[compat]
+Documenter = "0.27"

@@ -32,6 +32,14 @@ function dense_filtrations(y, dims::Vector{Int})
     )
 end
 
+"""
+    DenseMachine(W, σ, dims::Vector{Int})
+
+Create a `DenseMachine` object from a square weight matrix `W`, pointwise nonlinearity `σ`
+and filtration sequence `dims`.
+The values of `dims` specify how to split the input space into a sequence of subspaces.
+In particular, it is required that `size(W) == (sum(dims), sum(dims))`.
+"""
 struct DenseMachine{T, F} <: AbstractMachine
     W::T
     σ::F
@@ -40,8 +48,14 @@ end
 
 @functor DenseMachine (W, σ)
 
-DenseMachine(σ, dims::Vector{Int}; kwargs...) = DenseMachine(dims, σ; kwargs...)
+DenseMachine(σ, dims::Vector{Int}; init=glorot_uniform) = DenseMachine(dims, σ; init)
 
+"""
+    DenseMachine(dims::Vector{Int}, σ; init=glorot_uniform)
+
+Return a `DenseMachine(W, σ, dims)` object, where `W = init(sum(dims), sum(dims))`.
+Default to Glorot uniform initialization.
+"""
 function DenseMachine(dims::Vector{Int}, σ; init=glorot_uniform)
     W = init(sum(dims), sum(dims))
     return DenseMachine(W, σ, dims)
@@ -96,6 +110,18 @@ function conv_filtrations(y::AbstractArray{T, N}, dims::Vector{Int}; pad::NTuple
     )
 end
 
+"""
+    ConvMachine(W, σ, dims::Vector{Int}, pad::Dims)
+
+Create a `ConvMachine` object from a weight array `W`, pointwise nonlinearity `σ`,
+filtration sequence `dims` and padding `pad`.
+The values of `dims` specify how to split the input space into a sequence of subspaces.
+In particular, it is required that `size(W) == (kernelsize..., sum(dims), sum(dims))`,
+where `kernelsize` is such that convolution by `W` with padding `pad` preserves
+input dimension.
+Padding `pad` has length twice the number of kernel dimensions (for example, it takes
+four values for image convolutions).
+"""
 struct ConvMachine{T, F, M} <: AbstractMachine
     W::T
     σ::F
@@ -107,8 +133,18 @@ end
 
 ConvMachine(W, σ, dims; pad) = ConvMachine(W, σ, dims, pad)
 
-ConvMachine(σ, dims::Vector{Int}; kwargs...) = ConvMachine(dims, σ; kwargs...)
+ConvMachine(σ, dims::Vector{Int}; pad, init=glorot_uniform) = ConvMachine(dims, σ; pad, init)
 
+"""
+    ConvMachine(dims::Vector{Int}, σ; pad, init=glorot_uniform)
+
+Return a `ConvMachine(W, σ, dims, pad)` object, where `W = init(kernelsize..., sum(dims), sum(dims))`.
+Default to Glorot uniform initialization.
+Here `kernelsize` is such that convolution with a kernel of size `kernelsize`
+and padding `pad` preserves input dimension.
+Padding `pad` has length twice the number of kernel dimensions (for example, it takes
+four values for image convolutions).
+"""
 function ConvMachine(dims::Vector{Int}, σ; pad, init=glorot_uniform)
     kernelsize = map(((p0, p1),) -> p0 + p1 + 1, nest_pads(pad))
     W = init(kernelsize..., sum(dims), sum(dims))
@@ -144,6 +180,14 @@ function recur_filtrations(y, dims::Vector{Int}; pad, timeblock)
     )
 end
 
+"""
+    RecurMachine(W, σ, dims::Vector{Int}, pad::Int, timeblock::Int)
+
+Create a `RecurMachine` object from a weight array `W`, pointwise nonlinearity `σ`,
+filtration sequence `dims`, padding `pad` and time block `timeblock`.
+The values of `dims` specify how to split the input space into a sequence of subspaces.
+In particular, it is required that `size(W) == (pad + 1, sum(dims), sum(dims))`.
+"""
 struct RecurMachine{T, F} <: AbstractMachine
     W::T
     σ::F
@@ -156,8 +200,14 @@ end
 
 RecurMachine(W, σ, dims; pad, timeblock) = RecurMachine(W, σ, dims, pad, timeblock)
 
-RecurMachine(σ, dims::Vector{Int}; kwargs...) = RecurMachine(dims, σ; kwargs...)
+RecurMachine(σ, dims::Vector{Int}; pad, timeblock, init=glorot_uniform) = RecurMachine(dims, σ; pad, timeblock, init)
 
+"""
+    RecurMachine(dims::Vector{Int}, σ; pad, timeblock, init=glorot_uniform)
+
+Return a `RecurMachine(W, σ, dims, pad, timeblock)` object, where `W = init(pad + 1, sum(dims), sum(dims))`.
+Default to Glorot uniform initialization.
+"""
 function RecurMachine(dims::Vector{Int}, σ; pad, timeblock, init=glorot_uniform)
     W = init(pad + 1, sum(dims), sum(dims))
     return RecurMachine(W, σ, dims; pad, timeblock)

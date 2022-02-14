@@ -1,0 +1,5 @@
+# Internals
+
+```@docs
+ParametricMachines.slice!
+```
