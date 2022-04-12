@@ -44,7 +44,7 @@ y = hcat(optimized_sequence, expensive_sequence)
 x = map(_ -> 0:n-1, y)
 
 plt = mapping(
-    fill(0:n-1) => "node",
+    x => "node",
     y => "activation value",
     stack=0:n-1 => nonnumeric => "step",
     color=0:n-1 => nonnumeric => "step",
@@ -54,7 +54,7 @@ plt = mapping(
 
 ##
 
-using GraphMakie, CairoMakie, LightGraphs
+using GraphMakie, CairoMakie, Graphs
 using AlgebraOfGraphics
 set_aog_theme!()
 
