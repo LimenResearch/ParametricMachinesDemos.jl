@@ -1,5 +1,10 @@
 using ParametricMachines
-using BenchmarkTools, ChainRulesCore, Flux, Zygote, CUDA
+using BenchmarkTools, ChainRulesCore, Flux, Zygote, CUDA, Random
+
+# Set seed on CPU and GPU
+
+Random.seed!(1234)
+CUDA.seed!(1234)
 
 # Benchmarking
 
