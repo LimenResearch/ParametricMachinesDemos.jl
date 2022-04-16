@@ -3,7 +3,7 @@ using Documenter
 
 makedocs(;
     modules=[ParametricMachines],
-    authors="Pietro Vertechi <pietro.vertechi@veos.digital> & Mattia G. Bergomi <mattia.bergomi@veos.digital>",
+    authors="Pietro Vertechi <pietro.vertechi@protonmail.com> & Mattia G. Bergomi <mattiagbergomi@gmail.com>",
     repo="https://github.com/BeaverResearch/ParametricMachines.jl/blob/{commit}{path}#{line}",
     sitename="Parametric Machines",
     format=Documenter.HTML(;
