@@ -1,4 +1,4 @@
-using ParametricMachines: dense_filtrations,
+using ParametricMachinesDemos: dense_filtrations,
                           conv_filtrations,
                           recur_filtrations,
                           filtrations,

@@ -1,5 +1,5 @@
 ```@meta
-CurrentModule = ParametricMachines
+CurrentModule = ParametricMachinesDemos
 ```
 
 # Introduction
@@ -8,6 +8,6 @@ CurrentModule = ParametricMachines
 
 This package can be installed typing
 ```julia
-julia> import Pkg; Pkg.add(url="https://github.com/BeaverResearch/ParametricMachines.jl")
+julia> import Pkg; Pkg.add(url="https://github.com/BeaverResearch/ParametricMachinesDemos.jl")
 ```
 in the julia REPL.

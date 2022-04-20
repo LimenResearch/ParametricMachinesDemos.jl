@@ -1,4 +1,4 @@
-module ParametricMachines
+module ParametricMachinesDemos
 
 using Base: front, setindex
 using NNlib: conv!, ∇conv_filter!, DenseConvDims

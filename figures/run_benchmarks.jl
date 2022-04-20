@@ -1,4 +1,4 @@
-using ParametricMachines
+using ParametricMachinesDemos
 using BenchmarkTools, ChainRulesCore, Flux, Zygote, CUDA, Random
 
 # Set seed on CPU and GPU
@@ -12,12 +12,12 @@ timeratio(b1, b2) = minimum(b1.times) / minimum(b2.times)
 
 function benchmark((y₀, z₀, ȳ, z̄, machine), device)
     σ, W = machine.σ, machine.W
-    forward, backward = ParametricMachines.filtrations(machine, y₀)
+    forward, backward = ParametricMachinesDemos.filtrations(machine, y₀)
 
     function forward_pass(y₀, z₀)
         y, z = copy(y₀), copy(z₀)
-        W̃ = ParametricMachines.clean!(copy(W), forward)
-        ParametricMachines.solve!(y, z, W̃, σ, forward)
+        W̃ = ParametricMachinesDemos.clean!(copy(W), forward)
+        ParametricMachinesDemos.solve!(y, z, W̃, σ, forward)
         return y, z
     end
 
@@ -31,10 +31,10 @@ function benchmark((y₀, z₀, ȳ, z̄, machine), device)
     y, z = forward_pass(y₀, z₀)
 
     function backward_pass(ȳ, z̄)
-        Dσ = ParametricMachines.derivative.(z .- z₀, σ, y)
-        W̃′ = ParametricMachines.clean!(ParametricMachines.flip(W), backward)
+        Dσ = ParametricMachinesDemos.derivative.(z .- z₀, σ, y)
+        W̃′ = ParametricMachinesDemos.clean!(ParametricMachinesDemos.flip(W), backward)
         ȳ₀, z̄₀ = copy(ȳ), copy(z̄)
-        ParametricMachines.solve!(z̄₀, ȳ₀, W̃′, Dσ, backward)
+        ParametricMachinesDemos.solve!(z̄₀, ȳ₀, W̃′, Dσ, backward)
         return ȳ₀, z̄₀
     end
 
