@@ -1,4 +1,4 @@
-using ParametricMachines, Flux
+using ParametricMachinesDemos, Flux
   
 poly(x, y) = (2x-1)^2 + 2y + x * y - 3
 poly((x, y)) = poly(x, y)

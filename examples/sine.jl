@@ -1,4 +1,4 @@
-using ParametricMachines, Flux
+using ParametricMachinesDemos, Flux
 
 t = -pi:0.1:pi
 

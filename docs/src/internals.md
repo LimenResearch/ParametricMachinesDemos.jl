@@ -1,5 +1,5 @@
 # Internals
 
 ```@docs
-ParametricMachines.slice!
+ParametricMachinesDemos.slice!
 ```
