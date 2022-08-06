@@ -3,8 +3,8 @@ using Documenter
 
 makedocs(;
     modules=[ParametricMachinesDemos],
-    authors="Pietro Vertechi <pietro.vertechi@protonmail.com> & Mattia G. Bergomi <mattiagbergomi@gmail.com>",
-    repo="https://github.com/BeaverResearch/ParametricMachinesDemos.jl/blob/{commit}{path}#{line}",
+    authors="xxxxxx xxxxxxxx <xxxxxx.xxxxxxxx@xxxxxxxxx.xxx> & xxxxxx x. xxxxxxx <xxxxxxxxxxxxxx@xxxxx.xxx>",
+    repo="https://github.com/xxxxxxxxx/xxxxxxxxxxxxxx.jl/blob/{commit}{path}#{line}",
     sitename="Parametric Machines",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
@@ -18,6 +18,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/BeaverResearch/ParametricMachinesDemos.jl",
+    repo="github.com/xxxxxxxxx/xxxxxxxxxxxxxx.jl.jl",
     push_preview=true,
 )
